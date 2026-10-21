@@ -2,7 +2,6 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Splines;
-using Unity.Mathematics;
 
 namespace RoadTools
 {
@@ -23,14 +22,12 @@ namespace RoadTools
             var road = Undo.AddComponent<Road>(go); // ajoute aussi le SplineContainer
             var container = go.GetComponent<SplineContainer>();
             Spline sp = container.Spline;
-            sp.Clear();
-            sp.Add(new BezierKnot(new float3(-40f, 0f, 0f)), TangentMode.AutoSmooth);
-            sp.Add(new BezierKnot(new float3(0f, 0f, 12f)), TangentMode.AutoSmooth);
-            sp.Add(new BezierKnot(new float3(40f, 0f, 0f)), TangentMode.AutoSmooth);
+            sp.Clear();               // Route VIDE : les nœuds se posent ensuite avec Ctrl+clic (voir RoadDrawTool).
             sp.Closed = false;
 
             Selection.activeGameObject = go;
             road.RequestRebuild();
+            Debug.Log("[Road System] Route créée. Ctrl+clic (Cmd+clic sur Mac) sur le terrain pour poser les nœuds.");
         }
 
         [MenuItem(Root + "Intersection Y", false, 40)]
