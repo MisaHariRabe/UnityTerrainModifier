@@ -30,6 +30,8 @@ public class TerrainModifierManagerEditor : Editor
         cache.Clear();
         cache.AddRange(FindObjectsByType<TerrainModifierNode>(FindObjectsInactive.Include));
         cache.AddRange(FindObjectsByType<TerrainSplineProfileNode>(FindObjectsInactive.Include));
+        cache.AddRange(FindObjectsByType<TerrainStampModifier>(FindObjectsInactive.Include));
+        cache.AddRange(FindObjectsByType<TerrainFootprint>(FindObjectsInactive.Include));
         cache.Sort((a, b) => ((ITerrainModifier)a).LayerOrder.CompareTo(((ITerrainModifier)b).LayerOrder));
         cacheDirty = false;
     }
